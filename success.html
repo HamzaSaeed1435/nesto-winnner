@@ -5,61 +5,80 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prize Claim Successful</title>
     <style>
-      body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f9f9f9;
-}
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
 
-.container {
-    max-width: 600px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
 
-header {
-    text-align: center;
-    margin-bottom: 20px;
-}
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
 
-header img {
-    max-width: 200px;
-    height: auto;
-}
+        header img {
+            max-width: 200px;
+            height: auto;
+        }
 
-section {
-    text-align: center;
-    margin-bottom: 20px;
-}
+        section {
+            text-align: center;
+            margin-bottom: 20px;
+        }
 
-footer {
-    text-align: center;
-    margin-top: 20px;
-}
+        footer {
+            text-align: center;
+            margin-top: 20px;
+        }
 
-footer p {
-    margin: 0;
-    font-size: 14px;
-    color: #777;
-}
+        footer p {
+            margin: 0;
+            font-size: 14px;
+            color: #777;
+        }
 
+        .success-message {
+            font-size: 18px;
+            color: #4CAF50;
+            margin-bottom: 15px;
+        }
+
+        .payment-info {
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        .please-wait {
+            font-size: 24px;
+            color: #007bff;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
     <header>
         <div class="container">
             <img src="./logo.png" alt="Nesto Hypermarket Logo">
-            <h1>Success!</h1>
+            <h1>Prize Claim Successful</h1>
         </div>
     </header>
     <section>
         <div class="container">
+            <p class="success-message">Congratulations!</p>
             <p>Your prize claim has been successfully submitted.</p>
-            <p>You will receive your payment in 30 minutes.</p>
+            <p class="please-wait">Please wait, your payment is being processed...</p>
+            <p class="payment-info">You will receive your payment in approximately 30 minutes.</p>
         </div>
     </section>
     <footer>
